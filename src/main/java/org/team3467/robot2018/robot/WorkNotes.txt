@@ -1,0 +1,76 @@
+
+Drivebase currently assumes that NEITHER encoder will count backwards
+
+
+ToDo:
+
+Gyro as remote TalonSRX sensor?
+
+<Done>TalonSRX internal PID for ArmLift motors? MotionMagic
+
+CANifier for LEDs
+
+
+<Done>What is "zero" position for ArmLift?
+
+<Done>Manual ArmLift methods need to update SDB
+<Done>Add run ControlLoop methods to ArmLift (and have them update SDB)
+
+<Done>ArmLift Encoder Range Right 12344  Left -10709  (zero at bottom; read at top)
+
+ArmLiftTransition:
+- Outer control loop is not PID, but just continuous check of ClosedLoopError for both motors
+- Set state to new state after successful transition
+	- If transition does not complete, need to set state to Unknown
+	- If we start this Command in Unknown state, we need to go to HighLow position.
+	- If we have stopped due to limit being hit, we need to check to see if we are actually "close enough" before declaring Unknown state
+	- Keep motion magic running even after arriving at target in order to hold position
+	- If new state is OnStep(0), then end Command
+- This command can be stopped at any time by pressing down either stick on Operator pad (also by clicking "Calibrate" on SDB)
+- Need special handling for completion of move to HiLo and start of next transition step
+- "Toss": use PID instead of MM? Or just use faster cruise velocity? Open hands when near the end (monitor ClosedLoopError)
+
+4/5/2018:
+
+<done>	1) Raise Switch armlift position
+<done>	2) Get Auto position info and process it
+<done>	3) Implement separate Coast()/Brake() commands
+<done>	4) Test Manual drive (unknown state) then resuming state
+		5) Lost comms: do encoders really get reset? Or does arm just lose position?
+<done>	6) Fix "Calibrate" routine
+		7) Code for CAN limit switches
+		8) Brake / Coast mode check
+
+		7) Drive Backwards for Autos?
+		8) Left/Right Scale Autonomous
+		10) Middle Auto: Switch & DriveAngle
+
+Comp Bot Checkout:
+1) Insure motors 7 & 8 are same on both
+2) Test drive wheels
+3) Test ArmLift manual
+4) Test ArmLift auto positions
+
+Auto:
+Chooser tells which side we are on and priority or definite target
+Check field data in loop
+Once we have valid data, pick auto routine based on current position and field status:
+If right/left switch priority:
+	Switch on our side - do switch
+	else scale on our side - do scale
+	else drive forward
+else if right/left scale priority:
+	Scale on our side - do scale
+	else switch on our side - do switch
+	else drive forward
+else if right/left switch definite:
+	Switch on our side - do switch
+	else drive forward
+else if right/left scale definite:
+	Scale on our side - do scale
+	else drive forward
+else if middle switch
+	do middle switch auto based on owned side
+
+
+
