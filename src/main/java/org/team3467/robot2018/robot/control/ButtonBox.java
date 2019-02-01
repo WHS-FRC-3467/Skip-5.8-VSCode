@@ -1,8 +1,8 @@
 package org.team3467.robot2018.robot.control;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
-import edu.wpi.first.wpilibj.hal.HAL;
+//import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
+//import edu.wpi.first.wpilibj.hal.HAL;
 
 /**
  * Handle input from a custom button box connected to the Driver Station over USB.
@@ -42,7 +42,7 @@ public class ButtonBox extends GenericHID {
     super(port);
 
     // HAL.report(tResourceType.kResourceType_XboxController, port);
-    HAL.report(tResourceType.kResourceType_Joystick, port);
+    // HAL.report(tResourceType.kResourceType_Joystick, port);
   }
 
 @Override

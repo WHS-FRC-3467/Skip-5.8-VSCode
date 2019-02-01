@@ -23,17 +23,17 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import openrio.powerup.MatchData;
+//import openrio.powerup.MatchData;
 
 
 /**
  * This is the top-level robot class.
  * 
  * The VM is configured to automatically run this class, and to call the
- * methods corresponding to each mode, as described in the IterativeRobot
+ * methods corresponding to each mode, as described in the TimedRobot
  * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * creating this project, you must also update the build.gradle file in the
+ * project.
  */
 
 
@@ -49,10 +49,10 @@ public class Robot extends TimedRobot {
 	public static IMU imu;
 	public static OI oi;
 	
-	public MatchData.OwnedSide ourSwitch;
-	public MatchData.OwnedSide ourScale;
-	public MatchData.OwnedSide theirSwitch;
-	public boolean haveValidFieldData = false;
+//	public MatchData.OwnedSide ourSwitch;
+//	public MatchData.OwnedSide ourScale;
+//	public MatchData.OwnedSide theirSwitch;
+//	public boolean haveValidFieldData = false;
     	
     /**
      * This method is run when the robot is first started up and should be
@@ -76,21 +76,23 @@ public class Robot extends TimedRobot {
 		oi.BindCommands();
 
 		// Init Match Data
+		/*
 		haveValidFieldData = false;
 		ourSwitch = MatchData.OwnedSide.UNKNOWN;
 		ourScale = MatchData.OwnedSide.UNKNOWN;
 		theirSwitch = MatchData.OwnedSide.UNKNOWN;
+		*/
 
 		// Put an Autonomous mode chooser on the Smart Dashboard
  		chooser = new SendableChooser<String>();
 
-		chooser.addDefault("Drive Forward (Default)", "DriveForward");
-        chooser.addObject("Middle Switch", "MiddleSwitch");
-        chooser.addObject("Left Switch from Front", "LeftSwitchFront");
-        chooser.addObject("Left Switch from Side", "LeftSwitchSide");
-        chooser.addObject("Right Switch from Front", "RightSwitchFront");
-        chooser.addObject("Right Switch from Side", "RightSwitchSide");
-        chooser.addObject("Do Nothing", "AutoDoNothing");
+		chooser.setDefaultOption("Drive Forward (Default)", "DriveForward");
+        chooser.addOption("Middle Switch", "MiddleSwitch");
+        chooser.addOption("Left Switch from Front", "LeftSwitchFront");
+        chooser.addOption("Left Switch from Side", "LeftSwitchSide");
+        chooser.addOption("Right Switch from Front", "RightSwitchFront");
+        chooser.addOption("Right Switch from Side", "RightSwitchSide");
+        chooser.addOption("Do Nothing", "AutoDoNothing");
         SmartDashboard.putData("Autonomous Mode", chooser);
         
     }
@@ -140,7 +142,8 @@ public class Robot extends TimedRobot {
    public void autonomousPeriodic() {
        
  
-     	// Look for match data for up to 5 seconds
+	 /*
+	   	// Look for match data for up to 5 seconds
 	   double matchTime;
     	if (!haveValidFieldData && (matchTime = DriverStation.getInstance().getMatchTime()) > 10.0)
     	{
@@ -171,6 +174,7 @@ public class Robot extends TimedRobot {
         		return;
         	}
     	}
+	*/
 
     	// Once we get here, autonomous command (if any) will have been started, so tell Scheduler to run it
     	Scheduler.getInstance().run();
@@ -180,6 +184,7 @@ public class Robot extends TimedRobot {
    /*
     * Turn the String specified by the Chooser into an actual Command (or CommandGroup)
     */
+   /*
    private Command processChooser() {
     		
 	   Command autoCommand = null;
@@ -261,6 +266,7 @@ public class Robot extends TimedRobot {
     	}
     	return retStr;
     }
+*/
 
     /**
      * This method is called once when the robot enters Teleoperated mode.

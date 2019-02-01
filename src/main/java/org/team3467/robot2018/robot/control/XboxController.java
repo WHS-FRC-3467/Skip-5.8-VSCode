@@ -9,8 +9,8 @@
 package org.team3467.robot2018.robot.control;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
-import edu.wpi.first.wpilibj.hal.HAL;
+//import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
+//import edu.wpi.first.wpilibj.hal.HAL;
 
 /**
  * Handle input from Xbox 360 or Xbox One controllers connected to the Driver Station.
@@ -53,7 +53,7 @@ public class XboxController extends GenericHID {
     super(port);
 
     // HAL.report(tResourceType.kResourceType_XboxController, port);
-    HAL.report(tResourceType.kResourceType_Joystick, port);
+    // HAL.report(tResourceType.kResourceType_Joystick, port);
   }
 
   /**
